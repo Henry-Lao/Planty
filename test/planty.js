@@ -44,20 +44,20 @@ contract("Planty", (accounts) => {
   })
   describe('indexing', async () => {
     it('lists indexes', async () => {
-      await contract.plantBirth("AB");
+      await contract.plantBirth("AA");
       await contract.plantBirth("AC");
       await contract.plantBirth("AD");
 
       let ipfsHash
       let result = []
-      for (var i = 0; i < 3; i++) {
-        ipfsHash = await contract.ipfsHashs[i];
+      for (var i = 0; i < 4; i++) {
+        ipfsHash = await contract.ipfsHashs(i);
         result.push(ipfsHash);
       }
 
       console.log('ipfsHashs: ', contract.ipfsHashs)
 
-      let expected = ['0', '1', '2','3']
+      let expected = ['AA', 'AB', 'AC','AD']
       assert.equal(result, expected)
     })
   })
